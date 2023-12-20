@@ -16,7 +16,7 @@ const displayCountries = (countries) => {
     const infoSection = document.getElementById('countries-info');
     // console.log(countries)
     countries.forEach(country => {
-        // console.log(country)
+        console.log(country)
         const countryDiv = document.createElement('div')
         countryDiv.classList.add('col');
         countryDiv.innerHTML = `
@@ -47,7 +47,7 @@ const loadCountryDetail = async (code) => {
 }
 
 const countryDetail = (country) => {
-    // console.log(country)
+    console.log(country)
     const countryName = document.getElementById('countryDetailsLabel');
     countryName.innerText = country.name.common;
     const details = document.getElementById('countryDetailsBody');
@@ -61,6 +61,8 @@ const countryDetail = (country) => {
 }
 
 const dropdownBtn = (region) => {
+    const previousCountries = document.getElementById('countries-info');
+    previousCountries.innerHTML = ``;
     const name = document.getElementById(`${region}`);
     const regionName = name.innerText;
     const regionID = `region/${regionName}`;
@@ -68,7 +70,17 @@ const dropdownBtn = (region) => {
     loadCountries(regionID);
 }
 
+const searchBtn = () => {
+    const previousCountries = document.getElementById('countries-info');
+    previousCountries.innerHTML = ``;
+    const searchName = document.getElementById('search-field');
+    const countryName = searchName.value;
+    const countryID = `name/${countryName}?fullText=true`;
+    loadCountries(countryID);
+}
 
 loadCountries('all');
+
+
 
 
